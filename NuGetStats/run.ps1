@@ -1,56 +1,5 @@
 Import-Module Azure.Storage
 
-function Get-WebRequestTable
-{
-    # Gratefully borrowed from here: http://www.leeholmes.com/blog/2015/01/05/extracting-tables-from-powershells-invoke-webrequest/
-    param(
-        [Parameter(Mandatory = $true)]
-        [Microsoft.PowerShell.Commands.HtmlWebResponseObject] $WebRequest,
-        [Parameter(Mandatory = $true)]
-        [int] $TableNumber
-    )
-
-    ## Extract the tables out of the web request
-    $tables = @($WebRequest.ParsedHtml.getElementsByTagName("TABLE"))
-    $table = $tables[$TableNumber]
-    $titles = @()
-    $rows = @($table.Rows)
-
-    ## Go through all of the rows in the table
-    foreach($row in $rows)
-    {
-        $cells = @($row.Cells)
-
-        ## If we've found a table header, remember its titles
-        if($cells[0].tagName -eq "TH")
-        {
-            $titles = @($cells | % { ("" + $_.InnerText).Trim() })
-            continue
-        }
-
-        ## If we haven't found any table headers, make up names "P1", "P2", etc.
-        if(-not $titles)
-        {
-            $titles = @(1..($cells.Count + 2) | % { "P$_" })
-        }
-
-        ## Now go through the cells in the the row. For each, try to find the
-        ## title that represents that column and create a hashtable mapping those
-        ## titles to content
-        $resultObject = [Ordered] @{}
-
-        for($counter = 0; $counter -lt $cells.Count; $counter++)
-        {
-            $title = $titles[$counter]
-            if(-not $title) { continue }
-            $resultObject[$title] = ("" + $cells[$counter].InnerText).Trim()
-        }
-
-        ## And finally cast that hashtable to a PSCustomObject
-        [PSCustomObject] $resultObject
-    }
-}
-
 $packages = @(
                 "Cake",
                 "Cake.Core",
@@ -187,11 +136,112 @@ $containerName = $container.Name
 
 foreach ($package in $packages)
 {
-    $url = "https://www.nuget.org/packages/$package"
-    $request = Invoke-WebRequest $url
-    $file = "$ENV:TEMP\$package-$date.csv"
-    $blob = "$package/$package-$date.csv".ToLower()
-    Get-WebRequestTable -WebRequest $request -TableNumber 0 | Export-Csv -Path $file
+    "Begin $package $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    $packageName    = $package.ToLower()
+    $url            = "https://api.nuget.org/v3/registration1/$packageName/index.json"
+    $packageData    = Invoke-RestMethod `
+                        -Uri $url `
+                        -ErrorAction SilentlyContinue `
+                        | ForEach-Object items `
+                        | Select-Object -Last 1 `
+                        | ForEach-Object items `
+                        | ForEach-Object `@id `
+                        | ForEach-Object {
+                            [System.IO.Path]::GetFileName($_).TrimEnd(('.', 'j', 's', 'o', 'n'))
+                          } `
+                        | Where-Object { [string]::IsNullOrEmpty($_) -eq $false } `
+                        | ForEach-Object {
+                            [string] $packageVersion                    = $_
+                            [string] $packageDownloads                  = ''
+                            [string] $packageTotalDownloads             = ''
+                            [string] $packageSize                       = ''
+                            [string] $packageIsLatestVersion            = ''
+                            [string] $packageAbsoluteIsLatestVersion    = ''
+                            [string] $packageIsPreRelease               = ''
+                            [string] $packageLastUpdated                = ''
+                            [string] $packagePublished                  = ''
+                            [string] $packageLastEdited                 = ''
+                            [string] $packageMinClientVersion           = ''
+                            [string] $packageHash                       = ''
+                            [string] $packageHashAlgorithm              = ''
+
+                            Invoke-RestMethod `
+                                -Uri "https://www.nuget.org/api/v2/Packages(Id='$package',Version='$packageVersion')" `
+                                -Headers @{'Accept'='application/atom+json,application/json'} `
+                                -ErrorAction SilentlyContinue `
+                                | ForEach-Object entry `
+                                | ForEach-Object properties `
+                                | ForEach-Object {
+                                    $packageDownloads               = $_`
+                                                                        | ForEach-Object VersionDownloadCount `
+                                                                        | ForEach-Object '#text'
+
+                                    $packageTotalDownloads          = $_`
+                                                                        | ForEach-Object DownloadCount `
+                                                                        | ForEach-Object '#text'
+
+                                    $packageSize                    = $_`
+                                                                        | ForEach-Object PackageSize `
+                                                                        | ForEach-Object '#text'
+
+                                    $packageIsLatestVersion         = $_`
+                                                                        | ForEach-Object IsLatestVersion `
+                                                                        | ForEach-Object '#text'
+
+                                    $packageAbsoluteIsLatestVersion = $_`
+                                                                        | ForEach-Object IsAbsoluteLatestVersion `
+                                                                        | ForEach-Object '#text'
+
+                                    $packageIsPreRelease            = $_`
+                                                                        | ForEach-Object IsPrerelease  `
+                                                                        | ForEach-Object '#text'
+
+                                    $packageLastUpdated             = $_`
+                                                                        | ForEach-Object LastUpdated `
+                                                                        | ForEach-Object '#text'
+
+                                    $packagePublished               = $_`
+                                                                        | ForEach-Object Published `
+                                                                        | ForEach-Object '#text'
+
+                                    $packageHash                    = $_`
+                                                                        | ForEach-Object PackageHash
+
+                                    $packageHashAlgorithm           = $_`
+                                                                        | ForEach-Object PackageHashAlgorithm
+
+                                    $packageMinClientVersion        = $_`
+                                                                        | ForEach-Object MinClientVersion `
+                                                                        | ForEach-Object '#text'
+                                  } | Out-Null
+
+                            [PSCustomObject][Ordered]@{
+                                'Name'                      = $package
+                                'Version'                   = $packageVersion
+                                'Downloads'                 = $packageDownloads
+                                'Totaldownloads'            = $packageTotalDownloads
+                                'Size'                      = $packageSize
+                                'IsLatestVersion'           = $packageIsLatestVersion
+                                'IsAbsoluteLatestVersion'   = $packageAbsoluteIsLatestVersion
+                                'IsPrerelease'              = $packageIsPreRelease
+                                'LastUpdated'               = $packageLastUpdated
+                                'Published'                 = $packagePublished
+                                'Hash'                      = $packageHash
+                                'HashAlgorithm'             = $packageHashAlgorithm
+                                'MinClientVersion'          = $packageMinClientVersion
+                            }
+                        }
+    
+    if ($packageData -eq $null)
+    {
+        $packageData = ("No package data found for $package")
+        $packageData
+    }
+
+    $file = "$($ENV:TEMP)\$packageName-$date.csv"
+    $blob = "$packageName/$packageName-$date.csv"
+    $packageData | Export-Csv -Path $file -NoTypeInformation -Encoding UTF8
     Set-AzureStorageBlobContent -Container $containerName -Context $ctx -File $file -Blob $blob | Out-Null
     Remove-Item $file
+    "End $package $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
 }
