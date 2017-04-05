@@ -34,9 +34,11 @@ $packages = @(
     'Cake.Chocolatey.Module',   'Cake.Grunt'
 )
 
-$date = Get-Date -format 'yyyy-MM-dd_HHmmss'
-$ctx = New-AzureStorageContext -ConnectionString $env:AzureWebJobsStorage
-$container = Get-AzureStorageContainer –Name 'nugetstats' -Context $ctx -ErrorAction Ignore
+$batched    = [System.DateTimeOffset]::Now
+$date       = Get-Date -format 'yyyy-MM-dd_HHmmss'
+$ctx        = New-AzureStorageContext -ConnectionString $env:AzureWebJobsStorage
+$container  = Get-AzureStorageContainer –Name 'nugetstats' -Context $ctx -ErrorAction Ignore
+
 if ($container -eq $null)
 {
     $container = New-AzureStorageContainer -Name 'nugetstats' -Context $ctx
@@ -46,6 +48,7 @@ $containerName = $container.Name
 foreach ($package in $packages)
 {
     "Begin $package $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    $partitionKey   = [Guid]::NewGuid().ToString("n")
     $packageName    = $package.ToLower()
     $url            = "https://nuget.org/api/v2/FindPackagesById()?Id='$package'"
     $packageData    = Invoke-RestMethod `
@@ -113,6 +116,11 @@ foreach ($package in $packages)
                                                                 | ForEach-Object '#text'
 
                             [PSCustomObject][Ordered]@{
+                                'FileType'                  = 'nuget'
+                                'RowKey'                    = [Guid]::NewGuid().ToString("n")
+                                'PartitionKey'              = $partitionKey
+                                'Batched'                   = $batched
+                                'Exported'                  = [System.DateTimeOffset]::Now
                                 'Name'                      = $package
                                 'Version'                   = $packageVersion
                                 'Downloads'                 = $packageDownloads
