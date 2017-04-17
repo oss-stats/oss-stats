@@ -32,7 +32,7 @@ $packages = @(
     'Cake.GithubUtility',               'Cake.Recipe',                      'Cake.AssemblyInfoReflector',   'Cake.Chutzpah',
     'Cake.Mage',                        'Cake.Scripty',                     'Cake.CsvHelper',               'Cake.DotNetCoreEf',
     'Cake.Transifex',                   'Cake.Dialog',                      'Cake.Gradle',                  'Cake.Chocolatey.Module',
-    'Cake.Grunt',                       'Cake.Prca.Issues.Markdownlint',    'Cake.CodeAnalysisReporting'
+    'Cake.Grunt',                       'Cake.Prca.Issues.Markdownlint',    'Cake.CodeAnalysisReporting',   'Cake.ViewCompiler'
 )
 
 $batched    = [System.DateTimeOffset]::Now
