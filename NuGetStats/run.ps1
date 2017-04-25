@@ -36,7 +36,7 @@ $packages = @(
     'Cake.ImageOptimizer',              'Cake.AWS.CodeDeploy',              'Cake.MSBuildTask',             'Cake.ResxConverter',
     'Cake.UncUtils',                    'Cake.VsixSignTool'                 'Cake.EntityFramework',         'Cake.Netlify',
     'Cake.Azure',                       'SemVer.FromAssembly',              'Cake.SemVer.FromAssembly',     'Cake.SemVer.FromBinary',
-    'Cake.SynVer',                      'Cake.DeployParams'
+    'Cake.SynVer',                      'Cake.DeployParams',                'Cake.DocCreator'
 )
 
 $batched    = [System.DateTimeOffset]::Now
