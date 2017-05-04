@@ -37,7 +37,7 @@ $packages = @(
     'Cake.UncUtils',                    'Cake.VsixSignTool'                 'Cake.EntityFramework',         'Cake.Netlify',
     'Cake.Azure',                       'SemVer.FromAssembly',              'Cake.SemVer.FromAssembly',     'Cake.SemVer.FromBinary',
     'Cake.SynVer',                      'Cake.DeployParams',                'Cake.DocCreator',              'Cake.BuildSystems.Module',
-    'Cake.DNF.Module'
+    'Cake.DNF.Module',                  'Cake.SqlPackage'
 )
 
 $batched    = [System.DateTimeOffset]::Now
