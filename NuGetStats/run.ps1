@@ -39,7 +39,8 @@ $packages = @(
     'Cake.SynVer',                      'Cake.DeployParams',                'Cake.DocCreator',              'Cake.BuildSystems.Module',
     'Cake.DNF.Module',                  'Cake.SqlPackage',                  'Cake.Ember',                   'Cake.ClickTwice',
     'Cake.Nswag.Console',               'Cake.Yeoman',                      'Cake.Prca.Issues.EsLint',      'Cake.Prca.Issues.DocFx',
-    'Cake.NuGet',                       'Cake.Hosts',                       'Cake.APT.Module',              'Cake.FileSet'
+    'Cake.NuGet',                       'Cake.Hosts',                       'Cake.APT.Module',              'Cake.FileSet',
+    'Cake.XComponent'
 )
 
 $batched    = [System.DateTimeOffset]::Now
