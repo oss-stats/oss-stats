@@ -40,7 +40,8 @@ $packages = @(
     'Cake.DNF.Module',                  'Cake.SqlPackage',                  'Cake.Ember',                   'Cake.ClickTwice',
     'Cake.Nswag.Console',               'Cake.Yeoman',                      'Cake.Prca.Issues.EsLint',      'Cake.Prca.Issues.DocFx',
     'Cake.NuGet',                       'Cake.Hosts',                       'Cake.APT.Module',              'Cake.FileSet',
-    'Cake.XComponent',                  'Cake.SonarScanner',                'Cake.Parallel.Module',         'Cake.AzCopy'
+    'Cake.XComponent',                  'Cake.SonarScanner',                'Cake.Parallel.Module',         'Cake.AzCopy',
+    'Cake.OctoVariapus'
 )
 
 $batched    = [System.DateTimeOffset]::Now
