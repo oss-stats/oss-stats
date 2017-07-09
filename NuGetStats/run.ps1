@@ -8,10 +8,10 @@ $packages = @(
     'Cake.Plist',                       'Cake.Http',                        'Cake.Compression',                 'Cake.Slack',                      
     'Cake.XdtTransform',                'Cake.Incubator',                   'Cake.SqlServer',                   'Cake.AndroidAppManifest',         
     'Cake.Sonar',                       'Cake.ReSharperReports',            'Cake.Docker',                      'Cake.WebDeploy',                  
-    'Cake.Curl',                        'Cake.Wyam',                        'Cake.IIS',                         'Cake.ExtendedNuGet',              
-    'Cake.Yarn',                        'Cake.AWS.S3',                      'Cake.MsDeploy',                    'Cake.Services',                   
-    'Cake.DocFx',                       'Cake.VersionReader',               'Cake.CMake',                       'Cake.DoInDirectory',              
-    'Cake.Gitter',                      'Cake.AzureStorage',                'Cake.Yaml',                        'Cake.Twitter',                    
+    'Cake.Curl',                        'Cake.Wyam',                        'Cake.IIS',                         'Cake.Yarn',                       
+    'Cake.ExtendedNuGet',               'Cake.AWS.S3',                      'Cake.MsDeploy',                    'Cake.Services',                   
+    'Cake.DocFx',                       'Cake.VersionReader',               'Cake.CMake',                       'Cake.Gitter',                     
+    'Cake.DoInDirectory',               'Cake.AzureStorage',                'Cake.Yaml',                        'Cake.Twitter',                    
     'Cake.Kudu',                        'Cake.Figlet',                      'Cake.XCode',                       'Cake.SemVer',                     
     'Cake.Squirrel',                    'Cake.NSwag',                       'Cake.Codecov',                     'Cake.LongPath.Module',            
     'Cake.HockeyApp',                   'Cake.AppVeyor',                    'Cake.BuildSystems.Module',         'Cake.AliaSql',                    
@@ -27,8 +27,8 @@ $packages = @(
     'Cake.AppleSimulator',              'Cake.SendGrid',                    'Cake.CodeAnalysisReporting',       'Cake.Orchard',                    
     'Cake.Genymotion',                  'Cake.Prca.PullRequests.Tfs',       'Cake.Extensions',                  'Cake.SimpleHTTPServer',           
     'Cake.SemVer.FromAssembly',         'Cake.AWS.CloudFront',              'SemVer.FromAssembly',              'Cake.SqlServerPackager',          
-    'Cake.Paket.Module',                'Cake.WinSCP',                      'Cake.Prca.Issues.MsBuild',         'Cake.AssemblyInfoReflector',      
-    'Cake.XComponent',                  'Cake.GitPackager',                 'Cake.Prca.Issues.InspectCode',     'Cake.Path',                       
+    'Cake.Paket.Module',                'Cake.WinSCP',                      'Cake.Prca.Issues.MsBuild',         'Cake.XComponent',                 
+    'Cake.AssemblyInfoReflector',       'Cake.GitPackager',                 'Cake.Prca.Issues.InspectCode',     'Cake.Path',                       
     'Cake.CakeBoss',                    'Cake.Aws.ElasticBeanstalk',        'Cake.OctoDeploy',                  'Cake.ServiceOrchestration',       
     'Cake.Apigee',                      'Cake.JMeter',                      'Cake.ImageOptimizer',              'Cake.VsMetrics',                  
     'Cake.Prca.Issues.Markdownlint',    'Cake.ActiveDirectory',             'Cake.Android.Adb',                 'Cake.SquareLogo',                 
@@ -39,10 +39,10 @@ $packages = @(
     'Cake.SemVer.FromBinary',           'Cake.UServer',                     'Cake.ViewCompiler',                'Cake.DNF.Module',                 
     'Cake.GithubUtility',               'Cake.Recipe',                      'Cake.Dialog',                      'Cake.VsixSignTool',               
     'Cake.NSwag.Console',               'Cake.APT.Module',                  'Cake.Ember',                       'Cake.SqlPackage',                 
-    'Cake.FileSet',                     'Cake.PinNuGetDependency',          'Cake.Yeoman',                      'Cake.Wyam.Recipe',                
+    'Cake.PinNuGetDependency',          'Cake.FileSet',                     'Cake.Yeoman',                      'Cake.Wyam.Recipe',                
     'Cake.Gradle',                      'Cake.Netlify',                     'Cake.UncUtils',                    'Cake.AzCopy',                     
     'Cake.Chocolatey.Module',           'Cake.Hosts',                       'Cake.KeePass',                     'Cake.SonarScanner',               
-    'Cake.Parallel.Module'
+    'Cake.Parallel.Module',             'Cake.Bumpy'
 )
 
 $batched    = [System.DateTimeOffset]::Now
