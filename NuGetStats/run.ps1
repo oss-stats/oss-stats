@@ -42,7 +42,7 @@ $packages = @(
     'Cake.PinNuGetDependency',          'Cake.FileSet',                     'Cake.Yeoman',                      'Cake.Wyam.Recipe',                
     'Cake.Gradle',                      'Cake.Netlify',                     'Cake.UncUtils',                    'Cake.AzCopy',                     
     'Cake.Chocolatey.Module',           'Cake.Hosts',                       'Cake.KeePass',                     'Cake.SonarScanner',               
-    'Cake.Parallel.Module',             'Cake.Bumpy',                       'Cake.ArgumentHelpers'
+    'Cake.Parallel.Module',             'Cake.Bumpy',                       'Cake.ArgumentHelpers',             'Cake.DocumentDb'
 )
 
 $batched    = [System.DateTimeOffset]::Now
