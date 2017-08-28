@@ -43,7 +43,7 @@ $packages = @(
     'Cake.Gradle',                      'Cake.Netlify',                     'Cake.UncUtils',                    'Cake.AzCopy',                     
     'Cake.Chocolatey.Module',           'Cake.Hosts',                       'Cake.KeePass',                     'Cake.SonarScanner',               
     'Cake.Parallel.Module',             'Cake.Bumpy',                       'Cake.ArgumentHelpers',             'Cake.DocumentDb',
-    'Cake.Endpoint',                    'Cake.ScheduledTasks',              'Cake.Bower'
+    'Cake.Endpoint',                    'Cake.ScheduledTasks',              'Cake.Bower',                       'Cake.Markdown-Pdf'
 )
 
 $batched    = [System.DateTimeOffset]::Now
