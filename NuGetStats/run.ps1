@@ -46,7 +46,7 @@ $packages = @(
     'Cake.Endpoint',                    'Cake.ScheduledTasks',              'Cake.Bower',                       'Cake.Markdown-Pdf',
     'Cake.Issues',                      'Cake.Handlebars',                  'Cake.Issues.Testing',              'Cake.Graph',
     'Cake.Issues.PullRequests',         'Cake.Issues.InspectCode',          'Cake.Issues.MsBuild',              'Cake.Issues.PullRequests.Tfs',
-    'Cake.Issues.DocFx'
+    'Cake.Issues.DocFx',                'Cake.Issues.EsLint',               'Cake.Issues.Markdownlint',         'Cake.Issues.Reporting'
 )
 
 $batched    = [System.DateTimeOffset]::Now
