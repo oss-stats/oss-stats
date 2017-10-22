@@ -2,7 +2,9 @@ Import-Module Azure.Storage
 
 $packages = @(
     'Cake',                             'Cake.Core',                        'Cake.Common',                      'Cake.CoreCLR'
-    'Cake.Testing',                     'Cake.NuGet',                       'Cake.Frosting.Template',           'Cake.FileHelpers',
+    'Cake.Testing',                     'Cake.NuGet',                       'Cake.Frosting.Template',           'Cake.Bakery',
+    'Cake.Scripting.Abstractions',      'Cake.Scripting.Transport',         
+    'Cake.FileHelpers',                 'Cake.Issues.EsLint',               'Cake.Issues.Markdownlint',         'Cake.Issues.Reporting'
     'Cake.Json',                        'Cake.Npm',                         'Cake.Git',                         'Cake.Powershell',
     'Cake.AutoRest',                    'Cake.Xamarin',                     'Cake.Gulp',                        'Cake.Coveralls',
     'Cake.Plist',                       'Cake.Http',                        'Cake.Compression',                 'Cake.Slack',
@@ -46,7 +48,7 @@ $packages = @(
     'Cake.Endpoint',                    'Cake.ScheduledTasks',              'Cake.Bower',                       'Cake.Markdown-Pdf',
     'Cake.Issues',                      'Cake.Handlebars',                  'Cake.Issues.Testing',              'Cake.Graph',
     'Cake.Issues.PullRequests',         'Cake.Issues.InspectCode',          'Cake.Issues.MsBuild',              'Cake.Issues.PullRequests.Tfs',
-    'Cake.Issues.DocFx',                'Cake.Issues.EsLint',               'Cake.Issues.Markdownlint',         'Cake.Issues.Reporting'
+    'Cake.Issues.DocFx'
 )
 
 $batched    = [System.DateTimeOffset]::Now
