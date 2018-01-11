@@ -58,7 +58,7 @@ $packages = @(
     'Cake.SynVer',
     'Cake.Talend',                  'Cake.Terraform',                   'Cake.Tfs.AutoMerge',           'Cake.Tfs.Build.Variables',
     'Cake.Tfx',                     'Cake.Topshelf',                    'Cake.Transifex',               'Cake.Twitter',
-    'Cake.UncUtils',                'Cake.Utility',                     'Cake.UServer',
+    'Cake.UncUtils',                'Cake.UrlLoadDirective.Module',     'Cake.Utility',                 'Cake.UServer',
     'Cake.Vagrant',                 'Cake.VersionReader',               'Cake.ViewCompiler',            'Cake.VsCode',
     'Cake.VSforMac',                'Cake.VsixSignTool',                'Cake.VsMetrics',
     'Cake.Watch',                   'Cake.WebDeploy',                   'Cake.Webpack',                 'Cake.WinSCP',
