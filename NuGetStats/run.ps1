@@ -22,7 +22,7 @@ $packages = @(
     'Cake.Email',                   'Cake.Ember',                       'Cake.Endpoint',                'Cake.EntityFramework',
     'Cake.EnvXmlTransform',         'Cake.ExtendedNuGet',               'Cake.Extensions',
     'Cake.Figlet',                  'Cake.FileHelpers',                 'Cake.FileSet',                 'Cake.FluentMigrator',
-    'Cake.Ftp',
+    'Cake.Flyway',                  'Cake.Ftp',
     'Cake.Gem',                     'Cake.Genymotion',                  'Cake.Git',                     'Cake.GithubUtility',
     'Cake.GitPackager',             'Cake.Gitter',                      'Cake.Gradle',                  'Cake.Graph',
     'Cake.Grunt',                   'Cake.Gulp',
