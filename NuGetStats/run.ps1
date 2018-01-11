@@ -34,7 +34,7 @@ $packages = @(
     'Cake.Issues.MsBuild',          'Cake.Issues.PullRequests',         'Cake.Issues.PullRequests.Tfs', 'Cake.Issues.Reporting',
     'Cake.Issues.Reporting.Generic','Cake.Issues.Testing',
     'Cake.JMeter',                  'Cake.Json',
-    'Cake.KeePass',                 'Cake.Kudu',
+    'Cake.Karma',                   'Cake.KeePass',                     'Cake.Kudu',
     'Cake.Liquibase',               'Cake.LongPath.Module',
     'Cake.Mage',                    'Cake.Markdown-Pdf',                'Cake.MarkdownToPdf',           'Cake.Microsoft.Extensions.Configuration',
     'Cake.MicrosoftTeams',          'Cake.MobileCenter',                'Cake.MonoApiTools',            'Cake.MSBuildTask',
