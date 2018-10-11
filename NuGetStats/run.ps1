@@ -3,7 +3,7 @@ Import-Module Azure.Storage
 $packages = @(
     'Cake',                         'Cake.Core',                        'Cake.Common',                  'Cake.CoreCLR'
     'Cake.Testing',                 'Cake.NuGet',                       'Cake.Frosting.Template',       'Cake.Bakery',
-    'Cake.Scripting.Abstractions',  'Cake.Scripting.Transport',         
+    'Cake.Scripting.Abstractions',  'Cake.Scripting.Transport',         'Cake.Tool',         
     'Cake.ActiveDirectory',         'Cake.AliaSql',                     'Cake.Android.Adb',             'Cake.Android.SdkManager',
     'Cake.AndroidAppManifest',      'Cake.ArtifactDrop',                'Cake.Apigee',                  'Cake.AppleSimulator',
     'Cake.AppPackager',             'Cake.Apprenda',                    'Cake.AppVeyor',                'Cake.APT.Module',
